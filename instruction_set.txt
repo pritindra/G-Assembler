@@ -1,0 +1,16 @@
+opcode    instruction        register     operation
+
+0x00      LD R1, 0xFFFF      REG[0-7]      LOAD
+0x01      LD R1, R2          REG[0-7]
+0x02      LD R1, $0xFFFF     REG[0-7]
+
+0x10      ST R1, $0xFFFF     REG[0-7]      STORE
+0x13      ST R1, R2          REG[0-7]
+
+0x20      CMP R1, R2         REG[0-7]      COMPARE
+0x21      CMP R1, 0xffff     REG[0-7]
+
+0x40      ADD R1, 0xffff     REG[0-7]      ADDITION
+0x41      SUB R1, 0xffff     REG[0-7]      SUBTRACTION
+0x42      ADD R1, R2         REG[0-7]   
+0x43      SUB R1, R2         REG[0-7]
