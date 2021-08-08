@@ -22,7 +22,16 @@ parser(sys.argv[1])
 def assemble():
     with open(sys.argv[1]) as fn:
         for line in fn:
-            token = tok.tokenize(line)
+            tk = Tokenizer(line)
             # label logic
-            # comments logic
+            if tk.curTok() == ".":
+                #logic
+            
             # instructions logic
+            if tk.curTok() == "LD" or "ld":
+                #load logic
+                tk.advance()
+            if tk.curTok() == "ADD" or "add":
+                tk.advance()
+
+            #similar advances
