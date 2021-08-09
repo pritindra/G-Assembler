@@ -6,6 +6,7 @@ opcode    instruction        register     operation
 
 0x10      ST R1, $0xFFFF     REG[0-7]      STORE
 0x13      ST R1, R2          REG[0-7]
+0x14      ST R1, 0xFFFF      REG[0-7]
 
 0x20      CMP R1, R2         REG[0-7]      COMPARE
 0x21      CMP R1, 0xffff     REG[0-7]
