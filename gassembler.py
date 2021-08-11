@@ -4,7 +4,7 @@ import sys
 import re
 
 def parser(fn):
-
+    pass
 
 
 def binfile(fn):
@@ -17,7 +17,7 @@ def writebin(fn, b):
 
 binfile("out.bin")
 
-parser(sys.argv[1])
+# parser(sys.argv[1])
 
 def assemble():
     with open(sys.argv[1]) as fn:
@@ -37,7 +37,7 @@ def assemble():
                 tk.advance(2)
                 if r>=0 and r<=7:
                     a1 = tk.curValue()
-                    if a1 = "$": # address
+                    if a1 == "$": # address
                         addr = int(a1[1:], 0)
                         b = [0x02, r, addr >> 8, addr & 0xFF]
                         writebin("out.bin", b)
@@ -59,7 +59,7 @@ def assemble():
                 tk.advance(2)
                 if r>=0 and r<=7:
                     a1 = tk.curValue()
-                    if a1 = "$": # address
+                    if a1 == "$": # address
                         addr = int(a1[1:], 0)
                         b = [0x10, r, addr >> 8, addr & 0xFF]
                         writebin("out.bin", b)
@@ -93,7 +93,7 @@ def assemble():
                     print("Invalid identities")
                     sys.exit()
 
-            if tk.curTok() == "ADD" or "add":
+            if tk.curValue() == "ADD" or "add":
                 
                 r = int(tk.peekValue(1).upper()[1])
                 tk.advance(2)
@@ -110,3 +110,24 @@ def assemble():
                 else:
                     print("Invalid identities")
                     sys.exit()
+
+            if tk.curValue() == "SUB" or "sub":
+                
+                r = int(tk.peekValue(1).upper()[1])
+                tk.advance(2)
+                if r>=0 and r<=7:
+                    a1 = tk.curValue()
+                    if a1[0] == "R": # Register
+                        r2 = int(a1[1:0], 0)
+                        b = [0x43, r, 0, r2]
+                        writebin("out.bin", b)
+                    else: # Value
+                        v = int(a1,0)
+                        b = [0x41, r, v >> 8, v & 0xFF]
+                        writebin("out.bin", b)
+                else:
+                    print("Invalid identities")
+                    sys.exit()
+
+
+
